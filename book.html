@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sty.css">
+    <title>book</title>
+</head>
+<body dir="auto">
+    <a href="pro.html"></a>
+
+        <section class="section" id="content">
+        <h2 class="section-title">للحجز داخل المطعم</h2>
+        
+        <form id="contactForm" class="contact-form">
+        <div class="form-group">
+            <label for="name"></label>
+            <input
+            id="name"
+            type="text"
+            name="name"
+            required
+            placeholder="الاسم"
+            />
+        </div>
+        <div class="form-group">
+            <label for="phone"></label>
+            <input
+            id="phone"
+            type="tel"
+            name="phone"
+            required
+            placeholder="رقم الهاتف"
+            dir="rtl"
+            />
+        </div>
+        <div class="form-group">
+            <label for="email"></label>
+            <input
+            id="email"
+            type="email"
+            name="email"
+            required
+            placeholder="البريد الالكتروني"
+            />
+        </div>
+        <div class="form-group">
+        <label for="pay"></label>
+        <select name="pay" id="pay" required placeholder="طريقه الدفع">
+        <option value="" disabled selected>اختار طريقة الدفع</option>
+        <option value="cash">كاش</option>
+        <option value="credit">فيزا / ماستر كارد</option>
+    </select>
+</div><br>
+        <button type="submit" class="btn">أرسل</button>
+        <button type="reset" class="btn">احذف</button>
+    </div>
+        </form>
+    </section>
+        <footer class="footer">
+        <div class="container">
+        <p>© 2025 مطعم النخبة — كل الحقوق محفوظة</p>
+        <div class="social">
+        تابعنا على: <a href="#" target="_blank">فيسبوك</a> .
+        <a href="#" target="_blank">إنستجرام</a>
+        </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

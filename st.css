@@ -1,0 +1,539 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --color-primary: #8864f0;
+            --color-primary-dark: #7350d6;
+            --color-border: #686870;
+            --color-muted: #76766e;
+            --color-card: #292334;
+            --color-input-bg: #3c364c;
+            --color-background: #6e56b0;
+            --color-white: #f9f9f9;
+            --color-placeholder: #7f7990;
+            --color-error: #ff6b6b;
+            --color-success: #51cf66;
+        }
+        body {
+            height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            background: var(--color-background);
+            color: var(--color-white);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .card {
+            display: flex;
+            flex-direction: column;
+            background: var(--color-card);
+            border-radius: 22px;
+            padding: 6px;
+            width: min(500px, 85vw);
+            max-width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero,
+        form {
+            flex: 1 1 50%;
+        }
+        .hero {
+            background: linear-gradient(135deg, #8864f0 0%, #6e56b0 100%);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 16px;
+            transition: 0.3s;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(136, 100, 240, 0.1) 0%, 
+                rgba(110, 86, 176, 0.3) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInRight 0.6s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            animation: slideInRight 0.6s ease-out 0.1s backwards;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        form {
+            padding: 30px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: padding 0.3s;
+        }
+
+        form :is(h2, h3) {
+            text-align: center;
+        }
+
+        form > h2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: var(--color-white);
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        form > h3 {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: var(--color-muted);
+            font-weight: normal;
+            animation: slideInLeft 0.6s ease-out 0.1s backwards;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            animation: formGroupAppear 0.6s ease-out;
+            animation-fill-mode: backwards;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.2s; }
+        .form-group:nth-child(2) { animation-delay: 0.3s; }
+
+        @keyframes formGroupAppear {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            margin-right: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .form-group label::after {
+            content: "*";
+            color: var(--color-error);
+            font-size: 0.8em;
+        }
+        button,
+        input {
+            height: 44px;
+            border-radius: 8px;
+            border: 0;
+            color: inherit;
+            font-family: inherit;
+            width: 100%;
+            outline: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input {
+            background: var(--color-input-bg);
+            padding: 0 15px;
+            border: 1px solid transparent;
+        }
+
+        input:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(136, 100, 240, 0.2);
+        }
+
+        input:invalid:not(:placeholder-shown) {
+            border-color: var(--color-error);
+            animation: shake 0.3s;
+        }
+
+        input:valid:not(:placeholder-shown) {
+            border-color: var(--color-success);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        input::placeholder {
+            color: var(--color-placeholder);
+            transition: color 0.3s;
+        }
+
+        input:focus::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .submit-btn {
+            background: var(--color-primary);
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+            animation: buttonAppear 0.6s ease-out 0.4s backwards;
+        }
+
+        @keyframes buttonAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .submit-btn::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .submit-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .submit-btn:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(136, 100, 240, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(136, 100, 240, 0.4);
+        }
+        .or {
+            position: relative;
+            height: 24px;
+            margin: 10px 0;
+            animation: fadeIn 0.6s ease-out 0.5s backwards;
+        }
+
+        .or::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--color-border);
+            transform: translateY(-50%);
+        }
+
+        .or::after {
+            content: "أو";
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            transform: translate(50%, -50%);
+            background: var(--color-card);
+            color: var(--color-muted);
+            font-size: 0.8rem;
+            padding: 0 12px;
+        }
+        .socials {
+            display: flex;
+            gap: 10px;
+            animation: fadeIn 0.6s ease-out 0.6s backwards;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: transparent;
+            border: 1px solid var(--color-border);
+            padding: 0 15px;
+            cursor: pointer;
+            flex: 1;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                transparent 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .social-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        .social-btn:active {
+            transform: translateY(0);
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+        }
+
+        .social-btn:hover .social-icon {
+            transform: scale(1.1);
+        }
+        .form-footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            animation: fadeIn 0.6s ease-out 0.7s backwards;
+        }
+
+        .form-footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .form-footer a::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 0;
+            height: 1px;
+            background: var(--color-primary);
+            transition: width 0.3s;
+        }
+
+        .form-footer a:hover::after {
+            width: 100%;
+        }
+
+        .form-footer a:hover {
+            color: var(--color-white);
+        }
+
+        .form-footer p {
+            margin: 5px 0;
+        }
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            animation: fadeIn 0.6s ease-out 0.35s backwards;
+        }
+
+        .checkbox-container {
+            position: relative;
+            width: 18px;
+            height: 18px;
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 18px;
+            height: 18px;
+            background: var(--color-input-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .checkmark::after {
+            content: "";
+            position: absolute;
+            display: none;
+            right: 6px;
+            top: 2px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-container input:checked ~ .checkmark::after {
+            display: block;
+        }
+        @media (min-width: 485px) {
+            form {
+                padding-inline: 40px;
+            }
+        }
+
+        @media (min-width: 500px) {
+            form {
+                transition: none;
+            }
+        }
+
+        @media (min-width: 580px) {
+            .card {
+                flex-direction: row;
+                padding: 6px 6px 6px 0;
+                width: min(740px, 90vw);
+            }
+
+            form :is(h2, h3) {
+                text-align: right;
+            }
+
+            .hero {
+                flex: 1 1 40%;
+                width: 50%;
+                border-radius: 16px 0 0 16px;
+            }
+
+            form {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (min-width: 700px) {
+            .hero {
+                flex: 1 1 50%;
+                width: 50%;
+            }
+            
+            form {
+                padding: 50px 40px;
+            }
+        }
+
+        @media (max-width: 579px) {
+            .hero {
+                border-radius: 16px 16px 0 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .socials {
+                flex-direction: column;
+            }
+            
+            .social-btn {
+                padding: 12px 15px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 0.8rem;
+            }
+        }
